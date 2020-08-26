@@ -1,28 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Pokemon msg="Welcome to Your Vue.js App"/>
+    <Pokemons />
   </div>
 </template>
 
 <script>
-import Pokemon from './components/Pokemon.vue'
+import Pokemons from './components/Pokemons.vue'
 
 export default {
   name: 'App',
   components: {
-    Pokemon
+    Pokemons
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
