@@ -34,6 +34,7 @@ export default {
   --flying: #a890f0;
   --steel: #b8b8d0;
   --ghost: #705898;
+  --fairy: #b5949e;
 }
 
 *{
