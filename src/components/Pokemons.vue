@@ -4,11 +4,10 @@
       :key="pokemon.id"
       :id="pokemon.id"
       :name="pokemon.name"
-      :sprite="pokemon.sprites.front_deafult"
+      :sprite="pokemon.sprites.front_default"
       :types="pokemon.types"
       :abilities="pokemon.abilities"
-    >
-    </Pokemon>
+    />
   </div>
 </template>
 
@@ -20,11 +19,12 @@ export default {
     Pokemon
   },
   props: {
- 
+    pokemons_number: Number,
+    start: Number,
+    end: Number,
   },
   data(){
     return {
-      pokemons_number: 150,
       base_url: 'https://pokeapi.co/api/v2/pokemon/',
       pokemons: []
     }
@@ -40,9 +40,7 @@ export default {
           else console.log(error);
         })
         .then((data) => {
-          console.log(data)
           poke_list.push(data)
-          console.log(poke_list.length)
         })
       }
       this.pokemons = poke_list;
@@ -58,10 +56,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .set{
+  width: 95vw;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-content: center;
-  
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  margin: 0 auto;
 }
 </style>
