@@ -1,6 +1,6 @@
 <template>
   <div class="set">
-    <Pokemon v-for="pokemon in pokemons"
+    <Pokemon v-for="pokemon in pokemons_list"
       :key="pokemon.id"
       :id="pokemon.id"
       :name="pokemon.name"
@@ -13,12 +13,14 @@
 
 <script>
 import Pokemon from './Pokemon.vue'
+const collect = require('collect.js');
 export default {
   name: 'Pokemons',
   components:{
     Pokemon
   },
   props: {
+    orderby: String,
     pokemons_number: Number,
     start: Number,
     end: Number,
@@ -26,7 +28,7 @@ export default {
   data(){
     return {
       base_url: 'https://pokeapi.co/api/v2/pokemon/',
-      pokemons: []
+      pokemons: [],
     }
   },
   methods:{
@@ -51,6 +53,11 @@ export default {
   beforeMount(){
     this.fetchPokemons();
   },
+  computed:{
+    pokemons_list(){
+      return collect(this.pokemons).sortBy(this.orderby)
+    }
+  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -62,4 +69,5 @@ export default {
   grid-gap: 1rem;
   margin: 0 auto;
 }
+
 </style>

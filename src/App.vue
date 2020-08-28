@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <Pokemons :pokemons_number="60"/>
+    <h1>Vue Pokédex</h1>
+    <div class="orderby">
+      <label for="order">Order by:</label>
+      <select name="order" id="order" v-model="orderby">
+        <option v-for="option in order_options" :key="option.value" :value="option.value">{{option.label}}</option>
+      </select>
+    </div>
+    <Pokemons :orderby="orderby" :pokemons_number="60"/>
   </div>
 </template>
 
@@ -11,6 +18,12 @@ export default {
   name: 'App',
   components: {
     Pokemons
+  },
+  data(){
+    return{
+      orderby: 'id',
+      order_options: [{value:'id', label: 'Default'}, {value: 'name', label: 'Name'}, ]
+    }
   }
 }
 </script>
@@ -52,5 +65,29 @@ body{
   background: #252525;
   font-family: 'Poppins';
   text-transform: capitalize;
+}
+h1{
+  text-align: center;
+  color: #FFF;
+  margin: 1rem 0 2rem 0;
+}
+.orderby{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+label, select{
+  width: 95%;
+  margin: 1rem;
+  align-items: center;
+  justify-self: center;
+  text-align-last: center;
+  color: #FFF;
+  background-color: #5d5d5d;
+  border-radius: .8rem;
+  text-transform: capitalize;
+}
+select{
+  align-items: center;
+  text-align-last: center;
 }
 </style>
